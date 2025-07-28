@@ -14,12 +14,14 @@ void main() {
         description: 'This is a test product description',
         price: 99.99,
         category: 'Test',
-        rating: 4.5,
+        rating: 4.55,
         reviewCount: 123,
       );
     });
 
-    testWidgets('displays product information correctly', (WidgetTester tester) async {
+    testWidgets('displays product information correctly', (
+      WidgetTester tester,
+    ) async {
       bool tapped = false;
 
       await tester.pumpWidget(
@@ -35,16 +37,16 @@ void main() {
 
       // Verify product name is displayed
       expect(find.text('Test Product'), findsOneWidget);
-      
+
       // Verify price is displayed with correct format
       expect(find.text('\$99.99'), findsOneWidget);
-      
+
       // Verify rating is displayed
-      expect(find.text(' 4.5 (123)'), findsOneWidget);
-      
+      expect(find.text(' 4.55 (123)'), findsOneWidget);
+
       // Verify tap callback works
       await tester.tap(find.byType(ListTile));
       expect(tapped, isTrue);
-    });   
+    });
   });
 }
