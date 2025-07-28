@@ -13,19 +13,17 @@ class ProductSearchScreen extends StatefulWidget {
 class _ProductSearchScreenState extends State<ProductSearchScreen> {
   final ProductService _productService = ProductService();
   final TextEditingController _searchController = TextEditingController();
-  
+
   List<Product> _products = [];
 
   // ! Available search terms: laptop, phone, wireless, premium, electronics, sports, you can check service for more if needed
   void _searchProducts(String query) {
     final products = _productService.searchProducts(query);
-    
+
     setState(() {
       _products = products;
     });
   }
-
-
 
   @override
   void dispose() {
@@ -37,7 +35,9 @@ class _ProductSearchScreenState extends State<ProductSearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: _products.isEmpty ? _buildEmptyState() : _buildProductList(),
+      body: _products.isEmpty
+          ? _EmptyState()
+          : _ProductList(products: _products),
     );
   }
 
@@ -51,7 +51,8 @@ class _ProductSearchScreenState extends State<ProductSearchScreen> {
           child: TextField(
             controller: _searchController,
             decoration: InputDecoration(
-              hintText: 'Try: "laptop", "wireless", "premium", "electronics"...',
+              hintText:
+                  'Try: "laptop", "wireless", "premium", "electronics"...',
               prefixIcon: const Icon(Icons.search),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -67,47 +68,47 @@ class _ProductSearchScreenState extends State<ProductSearchScreen> {
       ),
     );
   }
+}
 
-  Widget _buildEmptyState() {
+class _EmptyState extends StatelessWidget {
+  const _EmptyState();
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.search,
-            size: 64,
-            color: Colors.grey[400],
-          ),
+          Icon(Icons.search, size: 64, color: Colors.grey[400]),
           const SizedBox(height: 16),
           Text(
             'Start typing to search for products',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey[600],
-            ),
+            style: TextStyle(fontSize: 16, color: Colors.grey[600]),
           ),
           const SizedBox(height: 8),
           Text(
             'Try searching: laptop, wireless, premium, smart, headphones, etc.',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[500],
-            ),
+            style: TextStyle(fontSize: 14, color: Colors.grey[500]),
             textAlign: TextAlign.center,
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildProductList() {
+class _ProductList extends StatelessWidget {
+  const _ProductList({required this.products});
+
+  final List<Product> products;
+
+  @override
+  Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: _products.length,
+      itemCount: products.length,
       itemBuilder: (context, index) {
-        final product = _products[index];
-        return ProductListItem(
-          product: product,
-        );
+        final product = products[index];
+        return ProductListItem(product: product);
       },
     );
   }

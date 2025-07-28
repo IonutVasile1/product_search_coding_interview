@@ -76,14 +76,13 @@ Products: Headphones, Speaker, Watch, Camera, Laptop, Phone, Tablet, Monitor, Ke
    - Most recent searches should appear first
 
 2. **Search History UI**
-   - Show search history dropdown when search input is focused
-   - Hide dropdown when input loses focus
+   - Show search history when search input is focused
+   - Hide history when input loses focus
    - Display search terms as tappable list items
 
 3. **Interactive Behavior**
    - Tapping a history item should populate the search field and trigger search
    - Filter history items in real-time as user types (show only matching history)
-   - Clear button to remove individual history items
    - If no history matches current input, hide the dropdown
 
 **Success Criteria:**
