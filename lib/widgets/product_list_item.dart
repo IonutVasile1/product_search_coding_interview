@@ -5,11 +5,7 @@ class ProductListItem extends StatelessWidget {
   final Product product;
   final VoidCallback? onTap;
 
-  const ProductListItem({
-    super.key,
-    required this.product,
-    this.onTap,
-  });
+  const ProductListItem({super.key, required this.product, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +19,7 @@ class ProductListItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             color: Colors.grey[200],
           ),
-          child:  const Icon(Icons.image_not_supported),
+          child: const Icon(Icons.image_not_supported),
         ),
         title: Text(
           product.name,
@@ -41,17 +37,16 @@ class ProductListItem extends StatelessWidget {
             Row(
               children: [
                 Icon(Icons.star, size: 16, color: Colors.amber[700]),
-                Text(' ${product.rating.toStringAsFixed(2)} (${product.reviewCount})'),
+                Text(
+                  ' ${product.rating.toStringAsFixed(2)} (${product.reviewCount})',
+                ),
               ],
             ),
           ],
         ),
         trailing: Text(
           '\$${product.price.toStringAsFixed(2)}',
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
         onTap: onTap,
       ),
