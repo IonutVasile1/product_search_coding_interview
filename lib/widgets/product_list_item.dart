@@ -41,7 +41,7 @@ class ProductListItem extends StatelessWidget {
             Row(
               children: [
                 Icon(Icons.star, size: 16, color: Colors.amber[700]),
-                Text(' ${product.rating} (${product.reviewCount})'),
+                Text(' ${product.rating.toStringAsFixed(2)} (${product.reviewCount})'),
               ],
             ),
           ],

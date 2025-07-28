@@ -1,10 +1,9 @@
 import 'dart:math' as math;
 import '../models/product.dart';
 
-const _numberOfProducts = 2500000; // 2.5 million products
+const _numberOfProducts = 2500000;
 
 class ProductService {
-  // Generate products for the search functionality
   static final List<Product> _mockProducts = _generateLargeProductDataset();
   
   static List<Product> _generateLargeProductDataset() {
@@ -22,9 +21,9 @@ class ProductService {
         id: 'prod_$index',
         name: '$adj $prod ${index + 1}',
         description: 'High-quality $adj $prod with advanced features and excellent build quality. Perfect for everyday use.',
-        price: (20 + random.nextDouble() * 980).toDouble(), // $20 - $1000
+        price: (20 + random.nextDouble() * 980).toDouble(), 
         category: cat,
-        rating: (3 + random.nextDouble() * 2).toDouble(), // 3.0 - 5.0
+        rating: (3 + random.nextDouble() * 2).toDouble(),
         reviewCount: random.nextInt(1000),
       );
     });
@@ -33,7 +32,6 @@ class ProductService {
   List<Product> searchProducts(String query) {
     final lowercaseQuery = query.toLowerCase();
     
-    // Search through products with relevance scoring
     final results = <MapEntry<Product, double>>[];
     
     for (final product in _mockProducts) {
