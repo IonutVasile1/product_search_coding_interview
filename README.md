@@ -22,8 +22,8 @@
 2. Write one additional test as indicated by the TODO comment
 
 **Hints:**
-- Look at the actual widget output vs expected output
-- Follow the TODO guidance for what test to write
+- Look into the product_service to see what happens when query is empty
+- Follow the TODO guidance in the product_search_screen_test.dart for what test to write
 
 ### Task 2: Optimize Search Performance
 **Location:** `lib/screens/product_search_screen.dart`
